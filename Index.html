@@ -2,38 +2,63 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
     <title>Airfryer Conv'</title>
+    
+    <link rel="apple-touch-icon" href="https://emojicdn.elk.sh/🍟?size=180">
+    <link rel="icon" type="image/png" href="https://emojicdn.elk.sh/🍟?size=192">
+
     <style>
-        body { font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f0f2f5; }
-        .card { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 350px; text-align: center; }
-        h1 { color: #e67e22; margin-bottom: 1.5rem; }
-        .input-group { margin-bottom: 1rem; text-align: left; }
-        label { display: block; font-size: 0.9rem; color: #666; margin-bottom: 0.5rem; }
-        input { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 1rem; }
-        button { width: 100%; padding: 12px; background-color: #e67e22; color: white; border: none; border-radius: 10px; font-size: 1rem; cursor: pointer; transition: background 0.3s; }
-        button:hover { background-color: #d35400; }
-        #result { margin-top: 1.5rem; padding: 1rem; border-radius: 10px; background-color: #fff3e0; display: none; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f7f7f7; }
+        .card { background: white; padding: 30px; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); width: 90%; max-width: 400px; text-align: center; }
+        h1 { color: #e67e22; font-size: 24px; margin-bottom: 25px; }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; color: #333; }
+        input { width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 12px; font-size: 16px; box-sizing: border-box; outline: none; transition: border 0.3s; }
+        input:focus { border-color: #e67e22; }
+        button { width: 100%; padding: 15px; background: #e67e22; color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        #result { margin-top: 25px; padding: 20px; border-radius: 15px; background: #fff8f0; display: none; border: 1px dashed #e67e22; }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h1>🍟 AirConv'</h1>
+    <h1>🍟 Airfryer Conv'</h1>
     
     <div class="input-group">
         <label>Température Four (°C)</label>
-        <input type="number" id="tempFour" placeholder="Ex: 200">
+        <input type="number" id="tempFour" placeholder="ex: 200" inputmode="numeric">
     </div>
     
     <div class="input-group">
-        <label>Temps Four (minutes)</label>
-        <input type="number" id="tempsFour" placeholder="Ex: 30">
+        <label>Temps Four (min)</label>
+        <input type="number" id="tempsFour" placeholder="ex: 30" inputmode="numeric">
     </div>
     
-    <button onclick="calculer()">Convertir</button>
+    <button onclick="calculer()">Convertir !</button>
     
     <div id="result">
+        <div id="resText" style="font-size: 22px; font-weight: bold; color: #d35400;"></div>
+        <div style="margin-top: 10px; font-size: 14px; color: #666;">Secouez à mi-cuisson !</div>
+    </div>
+</div>
+
+<script>
+    function calculer() {
+        const t = document.getElementById('tempFour').value;
+        const m = document.getElementById('tempsFour').value;
+        if(t && m) {
+            document.getElementById('resText').innerText = (t - 20) + "°C — " + Math.round(m * 0.8) + " min";
+            document.getElementById('result').style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
         <div style="font-size: 1.2rem; font-weight: bold; color: #d35400;" id="resText"></div>
         <small style="color: #7f8c8d; display: block; margin-top: 10px;">💡 Pensez à remuer à mi-cuisson !</small>
     </div>
